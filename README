@@ -1,0 +1,18 @@
+devise_session_invalidatable
+============================
+
+Because this shouldn't work...
+
+# log in and save cookies...
+curl -c cookies.txt -d 'user[email]=foo@bar.com&agent[password]=foobarbaz' https://myhost/users/sign_in
+
+# request dashboard while logged in... 
+curl -b cookies.txt https://mysite/user_dashboard
+
+# log out...
+curl -b cookies.txt https://myhost/users/sign_out
+
+# request dashboard after log out...
+curl -b cookies.txt https://mysite/user_dashboard
+
+TODO: check if this affects later versions of devise (I'm stuck on 1.1.7 at the moment)
